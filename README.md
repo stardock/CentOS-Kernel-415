@@ -12,6 +12,7 @@ tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问�
 1. Remove previous headers
 
   `rpm -e --nodeps kernel-ml-headers`
+  
 2. Install kernel 4.15
 ```
   yum install git -y
