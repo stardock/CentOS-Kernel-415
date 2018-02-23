@@ -23,6 +23,7 @@ tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问�
 3. Check the boot order and make default boot
 
   `awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg`
+  
   `grub2-set-default 0`
 
 ### Install tsunami
