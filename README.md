@@ -25,6 +25,7 @@ sysctl -p
 ```
 4. Check 检查 `sysctl net.ipv4.tcp_congestion_control`
 
-# Change Boot Sequence on Centos7 (KVM)
+## Change Boot Sequence on Centos7 (KVM)
 Check the boot order `awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg`
+
 Make the default boot `grub2-set-default 0`
