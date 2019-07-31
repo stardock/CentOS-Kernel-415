@@ -1,35 +1,33 @@
-# CentOS-Kernel-415
+# CentOS-Kernel-415  
 
-(fork from https://github.com/liberal-boy/tcp_tsunami)
-
-CentOS kernel mainline v4.15 backup 
-
-Use this repo for new version of BBR (tsunami)
+(fork from https://github.com/liberal-boy/tcp_tsunami)  
+CentOS kernel mainline v4.15 backup  
+Use this repo for new version of BBR (tsunami)  
 
 
-# tcp_tsunami
-tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问题）
-## How to use
+# tcp_tsunami  
+tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问题）  
+## How to use  
 
-### Update your kernel to 4.15 and make the default boot order (KVM CentOS7)
-1. Remove previous headers
+### Update your kernel to 4.15 and make the default boot order (KVM CentOS7)  
+1. Remove previous headers  
 
-  `rpm -e --nodeps kernel-ml-headers`
+  `rpm -e --nodeps kernel-ml-headers`  
   
-2. Install kernel 4.15
-```
-  yum install git -y
-  git clone -b master https://www.github.com/stardock/CentOS-Kernel-415
-  cd CentOS-Kernel-415
-  rpm -ivh kernel-ml-4.15.4-1.el7.elrepo.x86_64.rpm
-  rpm -ivh kernel-ml-devel-4.15.4-1.el7.elrepo.x86_64.rpm
-  rpm -ivh kernel-ml-headers-4.15.4-1.el7.elrepo.x86_64.rpm
-```
-3. Check the boot order and make default boot
+2. Install kernel 4.15  
+```  
+  yum install git -y  
+  git clone -b master https://www.github.com/stardock/CentOS-Kernel-415  
+  cd CentOS-Kernel-415  
+  rpm -ivh kernel-ml-4.15.4-1.el7.elrepo.x86_64.rpm  
+  rpm -ivh kernel-ml-devel-4.15.4-1.el7.elrepo.x86_64.rpm  
+  rpm -ivh kernel-ml-headers-4.15.4-1.el7.elrepo.x86_64.rpm  
+```  
+3. Check the boot order and make default boot  
 
-  `awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg`
+  `awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg`  
   
-  `grub2-set-default 0`
+  `grub2-set-default 0`  
 
 ### Install tsunami  
 
