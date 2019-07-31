@@ -31,22 +31,24 @@ tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问�
   
   `grub2-set-default 0`
 
-### Install tsunami
+### Install tsunami  
 
-1. Install `make gcc`. 安装`make gcc`。
-2. Install `elfutils-libelf-devel libelf-dev libelf-devel`. Centos7中需要安装
-3. Run 执行:
+1. Install `make gcc`. 安装`make gcc`。  
+2. Install `elfutils-libelf-devel libelf-dev libelf-devel`. Centos7中需要安装  
+3. Run 执行:  
 ```
-wget https://raw.githubusercontent.com/liberal-boy/tcp_tsunami/master/tcp_tsunami.c
-echo "obj-m:=tcp_tsunami.o" > Makefile
-make -C /lib/modules/$(uname -r)/build M=`pwd` modules CC=/usr/bin/gcc
-insmod tcp_tsunami.ko
-cp -rf ./tcp_tsunami.ko /lib/modules/$(uname -r)/kernel/net/ipv4
-depmod -a
-modprobe tcp_tsunami
-echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
-echo "net.ipv4.tcp_congestion_control=tsunami" >> /etc/sysctl.conf
-sysctl -p
-```
-4. Check 检查 `sysctl net.ipv4.tcp_congestion_control`
+wget https://raw.githubusercontent.com/liberal-boy/tcp_tsunami/master/tcp_tsunami.c  
+echo "obj-m:=tcp_tsunami.o" > Makefile  
+make -C /lib/modules/$(uname -r)/build M=`pwd` modules CC=/usr/bin/gcc  
+insmod tcp_tsunami.ko  
+cp -rf ./tcp_tsunami.ko /lib/modules/$(uname -r)/kernel/net/ipv4  
+depmod -a  
+modprobe tcp_tsunami  
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf  
+echo "net.ipv4.tcp_congestion_control=tsunami" >> /etc/sysctl.conf  
+echo "net.ipv4.ip_forward=1" >> /etc/sysctl.conf  
+sysctl -p  
+```  
+
+4. Check 检查 `sysctl net.ipv4.tcp_congestion_control`  
 
