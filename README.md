@@ -19,23 +19,22 @@ tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问�
   
 2. Install kernel 4.15  
 ```  
-  yum install git -y  
-  git clone -b master https://www.github.com/stardock/CentOS-Kernel-415  
-  cd CentOS-Kernel-415  
-  rpm -ivh kernel-ml-4.15.4-1.el7.elrepo.x86_64.rpm  
-  rpm -ivh kernel-ml-devel-4.15.4-1.el7.elrepo.x86_64.rpm  
-  rpm -ivh kernel-ml-headers-4.15.4-1.el7.elrepo.x86_64.rpm  
+  yum install git -y
+  git clone -b master https://www.github.com/stardock/CentOS-Kernel-415
+  cd CentOS-Kernel-415
+  rpm -ivh kernel-ml-4.15.4-1.el7.elrepo.x86_64.rpm
+  rpm -ivh kernel-ml-devel-4.15.4-1.el7.elrepo.x86_64.rpm
+  rpm -ivh kernel-ml-headers-4.15.4-1.el7.elrepo.x86_64.rpm
 ```  
 3. Check the boot order and make default boot  
 
   `awk -F\' '$1=="menuentry " {print i++ " : " $2}' /etc/grub2.cfg`  
-  
   `grub2-set-default 0`  
 
 ### Install tsunami  
 
-1. Install `make gcc`. 安装`make gcc`。  
-2. Install `elfutils-libelf-devel libelf-dev libelf-devel`. Centos7中需要安装  
+1. `yum install -y make gcc wget`  安装`make gcc`  
+2. `yum install -y elfutils-libelf-devel`  Centos7中需要安装`elfutils-libelf-devel / libelf-dev / libelf-devel`  
 3. 
   Option 1 编译安装
   ```
@@ -47,7 +46,7 @@ tcp_tsunami adjust for kernel 4.13+（魔改版bbr，解决内核4.13+编译问�
   
   Option 2 直接下载编译好的文件
   ```  
-  wget 
+  wget https://raw.githubusercontent.com/stardock/CentOS-Kernel-415/master/tcp_tsunami.ko
   insmod tcp_tsunami.ko
   ```  
   
